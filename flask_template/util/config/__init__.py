@@ -8,6 +8,8 @@ from .sqlalchemy_config import SQLAchemyProductionConfig, SQLAchemyDebugConfig
 class ProductionConfig(SQLAchemyProductionConfig):
     SECRET_KEY = urandom(32)
 
+    REVERSE_PROXY_COUNT = 0
+
     DEBUG = False
     TESTING = False
 

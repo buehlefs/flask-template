@@ -19,3 +19,17 @@ On linux:
 ## Install for Development
 
 Run `poetry install`
+
+
+## Babel
+
+```bash
+# initial
+poetry run pybabel extract -F babel.cfg -o messages.pot .
+# create language
+poetry run pybabel init -i messages.pot -d translations -l en
+# compile translations to be used
+poetry run pybabel compile -d translations
+# extract updated strings
+poetry run pybabel update -i messages.pot -d translations
+```
