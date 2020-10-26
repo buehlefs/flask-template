@@ -1,0 +1,40 @@
+<!doctype html>
+{% autoescape true %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <h1>Routes overview:</h1>
+
+    <a href="{{url_for('debug-routes.index')}}">back</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>Methods</th>
+                <th>Endpoint</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes: %}
+            <tr>
+                <td>{{route.url}}</td>
+                <td>{{route.methods}}</td>
+                <td>{{route.endpoint}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+{% endautoescape %}
