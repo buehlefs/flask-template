@@ -8,7 +8,8 @@ from .db import DB, MIGRATE
 from .cli import register_cli_blueprint
 
 
-def register_db_in_app(app: Flask):
+def register_db(app: Flask):
+    """Register the sqlalchemy db and alembic migrations with the flask app."""
     if not app.config.get("SQLALCHEMY_DATABASE_URI"):
         app.config[
             "SQLALCHEMY_DATABASE_URI"

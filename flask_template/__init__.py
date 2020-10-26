@@ -1,4 +1,6 @@
-from os import environ, path, makedirs
+"""Root module containing the flask app factory."""
+
+from os import environ, makedirs
 from pathlib import Path
 from secrets import token_urlsafe
 from typing import Any, Dict, Optional
@@ -9,7 +11,10 @@ from flask import Flask
 from flask.logging import default_handler
 
 from .util.config import ProductionConfig, DebugConfig
+from . import babel
 from . import db
+from . import api
+from .api import jwt
 
 
 def create_app(test_config: Optional[Dict[str, Any]] = None):
@@ -77,6 +82,17 @@ def create_app(test_config: Optional[Dict[str, Any]] = None):
 
     # Begin loading extensions and routes
 
-    db.register_db_in_app(app)
+    babel.register_babel(app)
+
+    db.register_db(app)
+
+    jwt.register_jwt(app)
+    api.register_root_api(app)
+
+    if app.config.get("DEBUG", False):
+        # Register debug routes when in debug mode
+        from .util.debug_routes import register_debug_routes
+
+        register_debug_routes(app)
 
     return app

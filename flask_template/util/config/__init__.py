@@ -3,9 +3,10 @@ from os import urandom
 from logging import WARNING, INFO
 
 from .sqlalchemy_config import SQLAchemyProductionConfig, SQLAchemyDebugConfig
+from .smorest_config import SmorestProductionConfig, SmorestDebugConfig
 
 
-class ProductionConfig(SQLAchemyProductionConfig):
+class ProductionConfig(SQLAchemyProductionConfig, SmorestProductionConfig):
     SECRET_KEY = urandom(32)
 
     REVERSE_PROXY_COUNT = 0
@@ -24,7 +25,7 @@ class ProductionConfig(SQLAchemyProductionConfig):
     DEFAULT_LOG_DATE_FORMAT = None
 
 
-class DebugConfig(ProductionConfig, SQLAchemyDebugConfig):
+class DebugConfig(ProductionConfig, SQLAchemyDebugConfig, SmorestDebugConfig):
     DEBUG = True
     SECRET_KEY = "debug_secret"  # FIXME make sure this NEVER! gets used in production!!!
 

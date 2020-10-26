@@ -1,4 +1,4 @@
-class SQLAchemyProductionConfig(object):
+class SQLAchemyProductionConfig():
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
