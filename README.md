@@ -1,6 +1,9 @@
 # A template project for flask apps
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![GitHub license](https://img.shields.io/github/license/buehlefs/flask-template)](https://github.com/buehlefs/flask-template/blob/main/LICENSE)
+![Python: >= 3.7](https://img.shields.io/badge/python-^3.7-blue)
+<!--![Requires.io](https://img.shields.io/requires/github/buehlefs/flask-template)-->
 
 This package uses Poetry ([documentation](https://python-poetry.org/docs/)).
 
