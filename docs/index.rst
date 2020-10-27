@@ -14,7 +14,7 @@ Welcome to Flask-Template's documentation!
    cli
    changelog
 
-
+`Api documentation <api.html>`_
 
 Indices and tables
 ==================
