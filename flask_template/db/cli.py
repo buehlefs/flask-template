@@ -12,12 +12,13 @@ from .db import DB
 from . import models  # noqa
 
 
-DB_CLI = Blueprint("db_cli", __name__, cli_group=None)
+DB_CLI_BLP = Blueprint("db_cli", __name__, cli_group=None)
+DB_CLI = DB_CLI_BLP.cli  # expose as attribute for autodoc generation
 
 DB_COMMAND_LOGGER = "db"
 
 
-@DB_CLI.cli.command("create-db")
+@DB_CLI.command("create-db")
 @with_appcontext
 def create_db():
     """Create all db tables."""
@@ -30,7 +31,7 @@ def create_db_function(app: Flask):
     get_logger(app, DB_COMMAND_LOGGER).info("Database created.")
 
 
-@DB_CLI.cli.command("drop-db")
+@DB_CLI.command("drop-db")
 @with_appcontext
 def drop_db():
     """Drop all db tables."""
@@ -45,5 +46,5 @@ def drop_db_function(app: Flask):
 
 def register_cli_blueprint(app: Flask):
     """Method to register the DB CLI blueprint."""
-    app.register_blueprint(DB_CLI)
+    app.register_blueprint(DB_CLI_BLP)
     app.logger.info("Registered blueprint.")

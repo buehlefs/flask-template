@@ -1,6 +1,9 @@
 # Custom ignores:
 
 .vscode/
+docs/api.json
+docs/changelog.md
+docs/readme.md
 
 
 

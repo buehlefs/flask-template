@@ -8,7 +8,11 @@ from logging import Logger, Formatter, WARNING, getLogger
 from logging.config import dictConfig
 
 from flask import Flask
+from flask.cli import FlaskGroup
 from flask.logging import default_handler
+from flask_cors import CORS
+
+import click
 
 from .util.config import ProductionConfig, DebugConfig
 from . import babel
@@ -89,6 +93,9 @@ def create_app(test_config: Optional[Dict[str, Any]] = None):
     jwt.register_jwt(app)
     api.register_root_api(app)
 
+    # allow cors requests everywhere
+    CORS(app)
+
     if app.config.get("DEBUG", False):
         # Register debug routes when in debug mode
         from .util.debug_routes import register_debug_routes
@@ -96,3 +103,9 @@ def create_app(test_config: Optional[Dict[str, Any]] = None):
         register_debug_routes(app)
 
     return app
+
+
+@click.group(cls=FlaskGroup, create_app=create_app)
+def cli():
+    """Cli entry point for autodoc tooling."""
+    pass
