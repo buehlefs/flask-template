@@ -15,13 +15,13 @@ Cli Documentation of the Flask app
 
 
 .. click:: flask_migrate.cli:db
-   :prog: flask
+   :prog: flask db
    :section-title: DB Cli for Migrations
    :nested: full
 
 
 .. click:: flask_smorest.spec:openapi_cli
-   :prog: flask
+   :prog: flask openapi
    :section-title: Flask-Smorest Cli for OpenAPI Spec
    :nested: full
 
