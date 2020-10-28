@@ -1,6 +1,6 @@
 """Module containing the authentication API of the v1 API."""
 
-from flask_template.api.v1_api.models.auth import AccessTokenSchema, UserSchema
+from .models.auth import AccessTokenSchema, UserSchema
 from typing import Dict
 from flask.helpers import url_for
 from flask.views import MethodView

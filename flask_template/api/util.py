@@ -1,13 +1,13 @@
 """Module containing utilities for flask smorest APIs."""
 from typing import Any
-from flask_template.api.jwt import JWTMixin
+from .jwt import JWTMixin
 from flask_smorest import Blueprint
 import marshmallow as ma
 
 
 class SecurityBlueprint(Blueprint, JWTMixin):
     """Blueprint that is aware of jwt tokens and how to document them.
-    
+
     Use this Blueprint if you want to document security requirements for your api.
     """
 
