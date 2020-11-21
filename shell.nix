@@ -1,10 +1,14 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.mkShell {
+let
+  poetryEnv = pkgs.poetry2nix.mkPoetryEnv {
+    projectDir = ./.;
+  };
+in pkgs.mkShell {
 
   buildInputs = [
-    pkgs.python3
     pkgs.poetry
+    poetryEnv
   ];
 
 }
