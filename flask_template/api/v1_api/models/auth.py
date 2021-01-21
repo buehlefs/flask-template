@@ -4,17 +4,12 @@ import marshmallow as ma
 from ...util import MaBaseSchema
 
 __all__ = [
-    "RootSchema",
     "AuthRootSchema",
     "LoginPostSchema",
     "LoginTokensSchema",
     "AccessTokenSchema",
     "UserSchema",
 ]
-
-
-class RootSchema(MaBaseSchema):
-    auth = ma.fields.Url(required=True, allow_none=False, dump_only=True)
 
 
 class AuthRootSchema(MaBaseSchema):
