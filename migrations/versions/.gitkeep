@@ -1,0 +1,2 @@
+this file can be removed once the first migration is in this folder
+the versions folder has to exist for alembic to work correctly
