@@ -21,10 +21,16 @@ from . import api
 from .api import jwt
 
 
+# change this to change tha flask app name and the config env var prefix
+# must not contain any spaces!
+APP_NAME = __name__
+CONFIG_ENV_VAR_PREFIX = APP_NAME.upper().replace("-", "_").replace(" ", "_")
+
+
 def create_app(test_config: Optional[Dict[str, Any]] = None):
     """Flask app factory."""
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(APP_NAME, instance_relative_config=True)
 
     # Start Loading config #################
 
@@ -41,7 +47,7 @@ def create_app(test_config: Optional[Dict[str, Any]] = None):
         # also try to load json config
         app.config.from_json("config.json", silent=True)
         # load config from file specified in env var
-        app.config.from_envvar(f"{__name__}_SETTINGS", silent=True)
+        app.config.from_envvar(f"{CONFIG_ENV_VAR_PREFIX}_SETTINGS", silent=True)
         # TODO load some config keys directly from env vars
     else:
         # load the test config if passed in
@@ -71,7 +77,9 @@ def create_app(test_config: Optional[Dict[str, Any]] = None):
             app.logger.removeHandler(default_handler)
 
     logger: Logger = app.logger
-    logger.info("Configuration loaded.")
+    logger.info(
+        f"Configuration loaded. Possible config locations are: 'config.py', 'config.json', Environment: '{CONFIG_ENV_VAR_PREFIX}_SETTINGS'"
+    )
 
     if app.config.get("SECRET_KEY") == "debug_secret":
         logger.error(
