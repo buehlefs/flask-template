@@ -5,6 +5,7 @@ from typing import Dict
 from flask.helpers import url_for
 from flask.views import MethodView
 from dataclasses import dataclass
+from http import HTTPStatus
 from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
@@ -38,7 +39,7 @@ class RefreshedTokenData:
 class AuthRootView(MethodView):
     """Root endpoint for all authentication resources."""
 
-    @API_V1.response(AuthRootSchema())
+    @API_V1.response(HTTPStatus.OK, AuthRootSchema())
     def get(self):
         """Get the urls for the authentication api."""
         return AuthRootData(
@@ -57,7 +58,7 @@ class LoginView(MethodView):
         location="json",
         description="The login credentials of the user.",
     )
-    @API_V1.response(LoginTokensSchema())
+    @API_V1.response(HTTPStatus.OK, LoginTokensSchema())
     def post(self, credentials: Dict[str, str]):
         """Login with the user credentials to receive a access and refresh token pair.
 
@@ -75,7 +76,7 @@ class LoginView(MethodView):
 class RefreshView(MethodView):
     """Refresh endpoint to retrieve new api access tokens."""
 
-    @API_V1.response(AccessTokenSchema())
+    @API_V1.response(HTTPStatus.OK, AccessTokenSchema())
     @API_V1.require_jwt("jwt-refresh-token", refresh_token=True)
     def post(self, credentials: Dict[str, str]):
         """Get a new access token.
@@ -92,8 +93,8 @@ class RefreshView(MethodView):
 class WhoamiView(MethodView):
     """Whoami endpoint to test the api token and get the current user info."""
 
-    @API_V1.response(UserSchema())
-    @API_V1.require_jwt("jwt")
+    @API_V1.response(HTTPStatus.OK, UserSchema())
+    @API_V1.require_jwt("jwt", optional=True)
     def get(self):
         """Get the user object of the current user."""
         return current_user

@@ -1,8 +1,11 @@
 """Module to hold DB constant to avoid circular imports."""
 
+from typing import Type, cast
+from flask_sqlalchemy.model import DefaultMeta, Model
 from sqlalchemy.schema import MetaData
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from sqlalchemy.orm.decl_api import registry
 
 
 DB: SQLAlchemy = SQLAlchemy(
@@ -17,7 +20,15 @@ DB: SQLAlchemy = SQLAlchemy(
     )
 )
 
+
 # Model constant to be importable directly
-MODEL = DB.Model
+MODEL = cast(Type[Model], DB.Model)
+if type(MODEL) is not DefaultMeta or not issubclass(MODEL, Model):
+    raise Warning(
+        f"Please update the type cast of db.MODEL to reflect the current type {type(MODEL)}."
+    )
+
+# only for sqlalchemy 1.4!
+REGISTRY = cast(registry, MODEL.registry)
 
 MIGRATE = Migrate()

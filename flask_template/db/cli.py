@@ -1,7 +1,8 @@
 """CLI functions for the db module."""
 
+from typing import cast
 from flask import Flask, Blueprint, current_app
-from flask.cli import with_appcontext
+from flask.cli import with_appcontext, AppGroup
 import click
 
 from ..util.logging import get_logger
@@ -13,7 +14,7 @@ from . import models  # noqa
 
 
 DB_CLI_BLP = Blueprint("db_cli", __name__, cli_group=None)
-DB_CLI = DB_CLI_BLP.cli  # expose as attribute for autodoc generation
+DB_CLI = cast(AppGroup, DB_CLI_BLP.cli)  # expose as attribute for autodoc generation
 
 DB_COMMAND_LOGGER = "db"
 

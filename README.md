@@ -3,7 +3,6 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![GitHub license](https://img.shields.io/github/license/buehlefs/flask-template)](https://github.com/buehlefs/flask-template/blob/main/LICENSE)
 ![Python: >= 3.7](https://img.shields.io/badge/python-^3.7-blue)
-<!--![Requires.io](https://img.shields.io/requires/github/buehlefs/flask-template)-->
 
 This package uses Poetry ([documentation](https://python-poetry.org/docs/)).
 
@@ -38,11 +37,17 @@ Run the development server with
 poetry run flask run
 ```
 
+The API: <http://localhost:5000/api/>; Documentation: <http://localhost:5000/api/redoc> OR <http://localhost:5000/api/swagger-ui>
+
+Debug pages: <http://localhost:5000/debug/>
+
+
+
 ## What this Template contains
 
 This template uses the following libraries to build a rest app with a database on top of flask.
 
- *  Flask ([documentation](https://flask.palletsprojects.com/en/1.1.x/))
+ *  Flask ([documentation](https://flask.palletsprojects.com/en/2.0.x/))
  *  Flask-Cors ([documentation](https://flask-cors.readthedocs.io/en/latest/))\
     Used to provide cors headers.\
     Can be configured or removed in `flask_template/__init__.py`.
@@ -50,7 +55,7 @@ This template uses the following libraries to build a rest app with a database o
     Used to provide translations.\
     Can be configured in `flask_template/babel.py` and `babel.cfg`.\
     Translation files and Folders: `translations` (and `messages.pot` currently in .gitignore)
- *  Flask-SQLAlchemy ([documentation](https://flask-sqlalchemy.palletsprojects.com/en/2.x/), [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/13/))\
+ *  Flask-SQLAlchemy ([documentation](https://flask-sqlalchemy.palletsprojects.com/en/2.x/), [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/))\
     ORM Mapper for many SQL databases.\
     Models: `flask_template/db/models`\
     Config: `flask_template/util/config/sqlalchemy_config.py` and `flask_template/db/db.py`
@@ -97,8 +102,9 @@ Library alternatives or recommendations:
 
  *  Rest API: flask-restx ([documentation](https://flask-restx.readthedocs.io/en/latest/))
  *  For including single page applications: flask-static-digest ([documentation](https://github.com/nickjj/flask-static-digest))
- *  For scripting tasks: invoke ([documentation](http://www.pyinvoke.org)) (is already in `pyproject.toml`)
+ *  For scripting tasks: invoke ([documentation](http://www.pyinvoke.org))
  *  For hashing passwords: flask-bcrypt ([documentation](https://flask-bcrypt.readthedocs.io/en/latest/))
+ *  For Background Task Scheduling: [Celery](https://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html) (See also [Integrating Celery with Flask](https://flask.palletsprojects.com/en/2.0.x/patterns/celery/))
  
 
 ## Babel
@@ -126,10 +132,21 @@ poetry run flask drop-db
 ## Migrations
 
 ```bash
-# create a new migration after changes in the db
+# create a new migration after changes in the db (Always manually review the created migration!)
 poetry run flask db migrate -m "Initial migration."
 # upgrade db to the newest migration
 poetry run flask db upgrade
 # help
 poetry run flask db --help
+```
+
+## Compiling the Documentation
+
+```bash
+poetry shell
+cd docs
+make html
+
+# export/update requirements.txt from poetry dependencies (for readthedocs build)
+poetry export --format requirements.txt --output requirements.txt
 ```

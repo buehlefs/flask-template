@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 from flask.helpers import url_for
 from flask.views import MethodView
+from http import HTTPStatus
 from ..util import SecurityBlueprint as SmorestBlueprint
 from .models import RootSchema
 
@@ -21,7 +22,7 @@ class RootData:
 class RootView(MethodView):
     """Root endpoint of the v1 api."""
 
-    @API_V1.response(RootSchema())
+    @API_V1.response(HTTPStatus.OK, RootSchema())
     def get(self):
         """Get the urls of the next endpoints of the v1 api to call."""
         return RootData(auth=url_for("api-v1.AuthRootView", _external=True))

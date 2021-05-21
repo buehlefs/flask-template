@@ -6,6 +6,7 @@ from flask.helpers import url_for
 from flask.views import MethodView
 import marshmallow as ma
 from flask_smorest import Api, Blueprint as SmorestBlueprint
+from http import HTTPStatus
 from .util import MaBaseSchema
 from .v1_api import API_V1
 from .jwt import SECURITY_SCHEMES
@@ -14,7 +15,7 @@ from .jwt import SECURITY_SCHEMES
 ROOT_API = Api(spec_kwargs={"title": "API Root", "version": "v1"})
 
 
-class RootSchema(MaBaseSchema):
+class VersionsRootSchema(MaBaseSchema):
     title = ma.fields.String(required=True, allow_none=False, dump_only=True)
     v1 = ma.fields.Url(required=True, allow_none=False, dump_only=True)
 
@@ -29,7 +30,7 @@ ROOT_ENDPOINT = SmorestBlueprint(
 
 @ROOT_ENDPOINT.route("/")
 class RootView(MethodView):
-    @ROOT_ENDPOINT.response(RootSchema())
+    @ROOT_ENDPOINT.response(HTTPStatus.OK, VersionsRootSchema())
     def get(self) -> Dict[str, str]:
         """Get the Root API information containing the links to all versions of this api."""
         return {
