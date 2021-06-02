@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Update flask-smorest to version 0.31.1 to enable rapidoc OpenAPI documentation renderer
+- Default settings for sorting imports with isort (in `pyproject.toml`)
 
 
 ## [v0.2.0]
