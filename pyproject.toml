@@ -14,7 +14,7 @@ Flask-Cors = "^3.0.10"
 Flask-SQLAlchemy = "^2.5.1"
 Flask-Migrate = "^3.0.0"
 flask-babel = "^2.0.0"
-flask-smorest = "^0.31.0"
+flask-smorest = "^0.31.1"
 tomlkit = "^0.7.0"
 
 [tool.poetry.dev-dependencies]

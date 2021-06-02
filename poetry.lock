@@ -275,7 +275,7 @@ Flask-SQLAlchemy = ">=1.0"
 
 [[package]]
 name = "flask-smorest"
-version = "0.31.0"
+version = "0.31.1"
 description = "Flask/Marshmallow-based REST API framework"
 category = "main"
 optional = false
@@ -850,7 +850,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 name = "tomlkit"
 version = "0.7.1"
 description = "Style preserving TOML library"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -927,7 +927,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "0d6b3db5ff27357e2f85f45604699bad3a96d8f35060f12a99c29cafac9a438e"
+content-hash = "faaf0b23e9116103541fe22c3884f72f93cbf88427b7d019c93bfcc86aa3ed2f"
 
 [metadata.files]
 alabaster = [
@@ -1018,8 +1018,8 @@ flask-migrate = [
     {file = "Flask_Migrate-3.0.0-py2.py3-none-any.whl", hash = "sha256:fadbc9cbf782e95cf7cea63ceff11972d55f534bef86dae4d9d0ab9372bd62dd"},
 ]
 flask-smorest = [
-    {file = "flask-smorest-0.31.0.tar.gz", hash = "sha256:3cf65778cab6649a9acb99d75382de2bb13c1b4a5ca3b79272f0b6c936da98ef"},
-    {file = "flask_smorest-0.31.0-py3-none-any.whl", hash = "sha256:7f28d9f576b6d8627ddb29b93fca54a8ea1a4fab9fc025cb35ba95b29b92fa38"},
+    {file = "flask-smorest-0.31.1.tar.gz", hash = "sha256:26cd7dbce9ee98c662407c80f23abacd111ef134f92529730e45e17794251ac8"},
+    {file = "flask_smorest-0.31.1-py3-none-any.whl", hash = "sha256:4f28c80b7647d9592a31e4a2e68013f0776880b6c556b93ff2496a592efe64e4"},
 ]
 flask-sqlalchemy = [
     {file = "Flask-SQLAlchemy-2.5.1.tar.gz", hash = "sha256:2bda44b43e7cacb15d4e05ff3cc1f8bc97936cc464623424102bfc2c35e95912"},

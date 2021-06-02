@@ -37,9 +37,26 @@ Run the development server with
 poetry run flask run
 ```
 
-The API: <http://localhost:5000/api/>; Documentation: <http://localhost:5000/api/redoc> OR <http://localhost:5000/api/swagger-ui>
+### Trying out the Template
 
-Debug pages: <http://localhost:5000/debug/>
+#### The API:
+
+<http://localhost:5000/api/>
+
+#### OpenAPI Documentation:
+
+Configured in `flask_template/util/config/smorest_config.py`.
+
+   * Redoc (view only): <http://localhost:5000/api/redoc>
+   * Rapidoc: <http://localhost:5000/api/rapidoc>
+   * Swagger-UI: <http://localhost:5000/api/swagger-ui>
+   * OpenAPI Spec (JSON): <http://localhost:5000/api/api-spec.json>
+
+#### Debug pages:
+
+  * Index: <http://localhost:5000/debug/>
+  * Registered Routes: <http://localhost:5000/debug/routes>\
+    Useful for looking up which endpoint is served under a route or what routes are available.
 
 
 
