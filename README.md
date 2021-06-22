@@ -24,12 +24,10 @@ On linux:
 
 Run `poetry install` to install dependencies.
 
-Add `.env` file with the following content into the repository root.
-
-```bash
-FLASK_APP=flask_template # rename this if you rename the package!
-FLASK_ENV=development # set to production if in production!
-```
+The flask dev server loads environment variables from `.flaskenv` and `.env`.
+To override any variable create a `.env` file.
+Environment variables in `.env` take precedence over `.flaskenv`.
+See the content of the `.flaskenv` file for the default environment variables.
 
 Run the development server with
 
@@ -100,6 +98,8 @@ Additional files and folders:
     For use with the [nix](https://nixos.org) ecosystem.
  *  `pyproject.toml`\
     Poetry package config and config for the [black](https://github.com/psf/black) formatter.
+ *  `.flaskenv`\
+    Environment variables loaded by the `flask` command and the flask dev server.
  *  `.flake8`\
     Config for the [flake8](https://flake8.pycqa.org/en/latest/) linter
  *  `.editorconfig`
