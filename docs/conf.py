@@ -13,7 +13,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from os import environ
 from tomlkit import parse
 from pathlib import Path
@@ -48,12 +48,12 @@ with pyproject_path.open() as pyproject:
 package_config = pyproject_toml["tool"]["poetry"]
 sphinx_config = pyproject_toml["tool"].get("sphinx")
 
-project = package_config.get("name")
+project = str(package_config.get("name"))
 author = ", ".join(package_config.get("authors"))
 copyright_year = sphinx_config.get("copyright-year", 2020)
 copyright = f"{copyright_year}, {author}"
-version = package_config.get("version")
-release = sphinx_config.get("release", version)
+version = str(package_config.get("version"))
+release = str(sphinx_config.get("release", version))
 
 if sphinx_config.get("html-baseurl", None):
     html_baseurl = sphinx_config.get("html-baseurl", None)
@@ -127,13 +127,26 @@ if sphinx_config.get("intersphinx-mapping", None):
         for key, val in mapping.items()
     }
 
+
+myst_enable_extensions: List[str] = []
+
 # enable markdown parsing
 if sphinx_config.get("enable-markdown", False):
-    extensions.append("recommonmark")
+    _md_plugin = sphinx_config["enable-markdown"]
+    if _md_plugin is True or _md_plugin.lower() == "myst":
+        extensions.append("myst_parser")
+    elif _md_plugin.lower() == "recommonmark":
+        extensions.append("recommonmark")
+    else:
+        print(
+            "Unknown markdown plugin specified (allowed: 'myst', 'recommonmark'), using 'myst'."
+        )
+        extensions.append("myst_parser")
     print("MARKDOWN ENABLED")
 
     source_suffix[".txt"] = "markdown"
     source_suffix[".md"] = "markdown"
+
 
 # enable sphinx githubpages
 if sphinx_config.get("enable-githubpages", False):
@@ -201,7 +214,40 @@ redoc = [
     },
 ]
 
+# myst markdown parsing
+_myst_options = sphinx_config.get("myst", {})
+allowed_md_extensions = {
+    "amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "substitution",
+    "tasklist",
+}
 
+_heading_achors = _myst_options.get("heading_anchors", None)
+if _heading_achors and isinstance(_heading_achors, int) and _heading_achors > 0:
+    myst_heading_anchors = _heading_achors
+
+
+_md_extensions = _myst_options.get("extensions", None)
+if _md_extensions and isinstance(_md_extensions, list):
+    myst_enable_extensions = [x for x in _md_extensions if x in allowed_md_extensions]
+    unknown_md_extensions = [x for x in _md_extensions if x not in allowed_md_extensions]
+    if unknown_md_extensions:
+        print("Unknown Markdown extensions:", unknown_md_extensions)
+
+_md_substitutions = _myst_options.get("substitutions", None)
+if _md_substitutions and isinstance(_md_substitutions, dict):
+    myst_substitutions: Dict[str, str] = _md_substitutions
+
+
+# recommonmark settings
 def setup(app):
     recommonmark_config = {}
     if sphinx_config.get("recommonmark"):

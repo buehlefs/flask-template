@@ -27,6 +27,7 @@ Sphinx = "^4.0.0"
 recommonmark = "^0.7.0"
 sphinxcontrib-redoc = "^1.6.0"
 sphinx-click = "^3.0.0"
+myst-parser = "^0.15.1"
 
 [tool.poetry.scripts]
 #flask = 'flask.cli:main'
@@ -48,7 +49,8 @@ atomic = true
 copyright-year = 2021
 enable-autodoc = true
 enable-autosectionlabel = true
-enable-markdown = true
+# documentation for myst: <https://myst-parser.readthedocs.io/en/latest>
+enable-markdown = "myst"
 enable-todo = true
 # update gitignore if you want to edit docs/changelog.md manually!
 include-changelog = true
@@ -58,7 +60,27 @@ include-readme = true
 [tool.sphinx.intersphinx-mapping]
 python = ["https://docs.python.org/3"]
 
+[tool.sphinx.myst]
+# settings documentation: <https://myst-parser.readthedocs.io/en/latest/syntax/optional.html>
+# create anchors for h1 and h2
+heading_anchors = 2
+extensions = [
+    #"amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "html_admonition",
+    "html_image",
+    #"linkify", # requires installation of linkify-it-py
+    "replacements",
+    "smartquotes",
+    "substitution",
+    "tasklist",
+]
+# substitutions = {"key": "substitution value"}
+
 [tool.sphinx.recommonmark]
+# deprecated: use the MyST parser and settings instead
 auto-toc-tree-section = "Contents"
 enable-math = false
 enable-inline-math = false
