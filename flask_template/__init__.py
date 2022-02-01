@@ -1,7 +1,6 @@
 """Root module containing the flask app factory."""
 
-from os import environ, makedirs
-from pathlib import Path
+from os import makedirs
 from typing import Any, Dict, Optional, cast
 from logging import Logger, Formatter, Handler, WARNING, getLogger
 from logging.config import dictConfig
@@ -13,7 +12,7 @@ from flask.logging import default_handler
 from flask_cors import CORS
 
 from json import load as load_json
-from toml import load as load_toml
+from tomli import loads as load_toml
 
 import click
 
@@ -51,7 +50,7 @@ def create_app(test_config: Optional[Dict[str, Any]] = None):
         # also try to load json config
         config.from_file("config.json", load=load_json, silent=True)
         # also try to load toml config
-        config.from_file("config.toml", load=load_toml, silent=True)
+        config.from_file("config.toml", load=(lambda f: load_toml(f.read())), silent=True)
         # load config from file specified in env var
         config.from_envvar(f"{CONFIG_ENV_VAR_PREFIX}_SETTINGS", silent=True)
         # TODO load some config keys directly from env vars
