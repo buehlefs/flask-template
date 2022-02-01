@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add [MyST](https://myst-parser.readthedocs.io/en/latest/) markdown parser as default for documentation to support more reStructuredText features in markdown
 - Add default environment variables in `.flaskenv`
 - Add `tomli` as the default toml configuration parser
+- Add invoke to automate some cli tasks
+- Add invoke task to update doc dependencies
+- Add invoke task to create a licenses page
+- Add route for licenses
 
 ### Deprecated
 

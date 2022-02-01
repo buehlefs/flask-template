@@ -18,6 +18,7 @@ import click
 
 from .util.config import ProductionConfig, DebugConfig
 from . import babel
+from . import licenses
 from . import db
 from . import api
 from .api import jwt
@@ -100,6 +101,8 @@ def create_app(test_config: Optional[Dict[str, Any]] = None):
     # Begin loading extensions and routes
 
     babel.register_babel(app)
+
+    licenses.register_licenses(app)
 
     db.register_db(app)
 

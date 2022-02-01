@@ -28,6 +28,8 @@ recommonmark = "^0.7.0"
 sphinxcontrib-redoc = "^1.6.0"
 sphinx-click = "^3.0.0"
 myst-parser = "^0.15.1"
+invoke = "^1.6.0"
+pip-licenses = "^3.5.3"
 
 [tool.poetry.scripts]
 #flask = 'flask.cli:main'

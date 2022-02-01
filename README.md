@@ -37,6 +37,8 @@ poetry run flask run
 
 ### Trying out the Template
 
+For a list of all dependencies with their license open <http://localhost:5000/licenses/>.
+
 #### The API:
 
 <http://localhost:5000/api/>
@@ -91,6 +93,9 @@ This template uses the following libraries to build a rest app with a database o
  *  sphinxcontrib-redoc ([documantation](https://sphinxcontrib-redoc.readthedocs.io/en/stable/))
     Renders the OpenAPI spec with redoc in sphinx html output.
     Config: `docs/conf.py` (API title is read from spec)
+ *  invoke ([documentation](http://www.pyinvoke.org))\
+    tool for scripting cli tasks in python
+    Tasks: `tasks.py`
 
 Additional files and folders:
 
@@ -106,13 +111,15 @@ Additional files and folders:
  *  `tests`\
     Reserved for unit tests, this template has no unit tests.
  *  `instance` (in .gitignore)
- *  `flask_template/templates` and `flask_template/static` (currently empty)\
+ *  `flask_template/templates` and `flask_template/static`\
     Templates and static files of the flask app
  *  `docs`\
     Folder containing a sphinx documentation
  *  `typings`\
     Python typing stubs for libraries that have no type information.
     Mostly generated with the pylance extension of vscode.
+ *  `tasks.py`\
+    Tasks that can be executed with `invoke` (see [invoke tasks](#invoke-tasks))
 
 
 Library alternatives or recommendations:
@@ -123,6 +130,45 @@ Library alternatives or recommendations:
  *  For hashing passwords: flask-bcrypt ([documentation](https://flask-bcrypt.readthedocs.io/en/latest/))
  *  For Background Task Scheduling: [Celery](https://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html) (See also [Integrating Celery with Flask](https://flask.palletsprojects.com/en/2.0.x/patterns/celery/))
  
+
+## Poetry Commands
+
+```bash
+# install dependencies from lock file in a virtualenv
+poetry install
+
+# open a shell in the virtualenv
+poetry shell
+
+# update dependencies
+poetry update
+poetry run invoke update-dependencies # to update other dependencies in the repository
+
+# run a command in the virtualenv (replace cmd with the command to run without quotes)
+poetry run cmd
+```
+
+## Invoke Tasks
+
+[Invoke](http://www.pyinvoke.org) is a python tool for scripting cli commands.
+It allows to define complex commands in simple python functions in the `tasks.py` file.
+
+:warning: Make sure to update the module name in `tasks.py` after renaming the `flask_template` module!
+
+```bash
+# list available commands
+poetry run invoke --list
+
+# update dependencies (requirements.txt in ./docs and licenses template)
+poetry run invoke update-dependencies
+
+# Compile the documentation
+poetry run invoke doc
+
+# Open the documentation in the default browser
+poetry run invoke browse-doc
+```
+
 
 ## Babel
 
@@ -160,10 +206,15 @@ poetry run flask db --help
 ## Compiling the Documentation
 
 ```bash
-poetry shell
-cd docs
-make html
+# compile documentation
+poetry run invoke doc
+
+# Open the documentation in the default browser
+poetry run invoke browse-doc
+
+# Find reference targets defined in the documentation
+poetry run invoke doc-index --filter=searchtext
 
 # export/update requirements.txt from poetry dependencies (for readthedocs build)
-poetry export --format requirements.txt --output requirements.txt
+poetry run invoke update-dependencies
 ```
