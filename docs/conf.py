@@ -15,7 +15,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 from typing import Any, Dict, List, Optional, Tuple, Union
 from os import environ
-from tomlkit import parse
+from tomli import load as load_toml
 from pathlib import Path
 from shutil import copyfile
 import subprocess
@@ -41,9 +41,8 @@ else:
 
 pyproject_toml: Any
 
-with pyproject_path.open() as pyproject:
-    content = "\n".join(pyproject.readlines())
-    pyproject_toml = parse(content)
+with pyproject_path.open(mode="rb") as pyproject:
+    pyproject_toml = load_toml(pyproject)
 
 package_config = pyproject_toml["tool"]["poetry"]
 sphinx_config = pyproject_toml["tool"].get("sphinx")
