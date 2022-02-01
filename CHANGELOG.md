@@ -9,14 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Update flask-smorest to version 0.31.1 to enable rapidoc OpenAPI documentation renderer
+- Update flask-smorest to version `>0.31.1` to enable rapidoc OpenAPI documentation renderer
 - Default settings for sorting imports with isort (in `pyproject.toml`)
 - Add [MyST](https://myst-parser.readthedocs.io/en/latest/) markdown parser as default for documentation to support more reStructuredText features in markdown
 - Add default environment variables in `.flaskenv`
+- Add `tomli` as the default toml configuration parser
 
 ### Deprecated
 
 - Recommonmark markdown parser configuration for documentation (use the MyST parser instead)
+
+### Removed
+
+- `tomlkit` dependency
 
 
 ## [v0.2.0]
