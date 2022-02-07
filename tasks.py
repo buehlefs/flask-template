@@ -34,15 +34,25 @@ ALLOWED_LICENSES = [
 
 
 @task
-def doc(c, format_="html"):
+def doc(c, format_="html", all_=False, color=True):
     """Build the documentation.
 
     Args:
         c (Context): task context
         format_ (str, optional): the format to build. Defaults to "html".
+        all (bool, optional): build all files new. Defaults to False.
+        color (bool, optional): color output. Defaults to True.
     """
+    cmd = ["sphinx-build", "-b", format_]
+    if all_:
+        cmd.append("-a")
+    if color:
+        cmd.append("--color")
+    else:
+        cmd.append("--no-color")
+    cmd += [".", "_build"]
     with c.cd(str(Path("./docs"))):
-        c.run(join(["make", format_]), echo=True)
+        c.run(join(cmd), echo=True)
 
 
 @task
