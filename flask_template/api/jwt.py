@@ -77,7 +77,7 @@ class JWTMixin:
                     # trap exception and emulate flask exception handling
                     # as flask only handles one exception per request
                     # but we want to raise a custom exception for jwt exceptions
-                    current_app.handle_user_exception(exc)
+                    return current_app.handle_user_exception(exc)
                 return func(*args, **kwargs)
 
             # Store doc in wrapper function
