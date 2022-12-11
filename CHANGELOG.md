@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Updated redoc library version used in documentation to be compatible with used OpenAPI version
 - Update config handling to handle deprecation of FLASK_ENV gracefully (this may impact how test config is loaded)
 - Update flask-smorest to version `>0.39.0` to be compatible with flask `>2.2`
 - Update flask-smorest to version `>0.31.1` to enable rapidoc OpenAPI documentation renderer

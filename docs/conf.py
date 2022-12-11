@@ -60,7 +60,7 @@ if sphinx_config.get("html-baseurl", None):
 # -- update openapi specification -------------------------------------------
 
 subprocess.run(
-    ["poetry", "run", "flask", "openapi", "write", "docs/api.json"],
+    ["flask", "openapi", "write", "docs/api.json"],
     cwd=project_root,
 )
 
@@ -212,6 +212,8 @@ redoc = [
         "opts": {"hide-hostname": True},
     },
 ]
+
+redoc_uri = "https://unpkg.com/redoc@latest/bundles/redoc.standalone.js"
 
 # myst markdown parsing
 _myst_options = sphinx_config.get("myst", {})
