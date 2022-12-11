@@ -7,6 +7,7 @@ from .smorest_config import SmorestProductionConfig, SmorestDebugConfig
 
 
 class ProductionConfig(SQLAchemyProductionConfig, SmorestProductionConfig):
+    ENV = "production"
     SECRET_KEY = urandom(32)
 
     REVERSE_PROXY_COUNT = 0
@@ -26,6 +27,7 @@ class ProductionConfig(SQLAchemyProductionConfig, SmorestProductionConfig):
 
 
 class DebugConfig(ProductionConfig, SQLAchemyDebugConfig, SmorestDebugConfig):
+    ENV = "development"
     DEBUG = True
     SECRET_KEY = "debug_secret"  # FIXME make sure this NEVER! gets used in production!!!
 

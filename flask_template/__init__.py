@@ -1,12 +1,12 @@
 """Root module containing the flask app factory."""
 
-from os import makedirs
+from os import environ, makedirs
+from pathlib import Path
 from typing import Any, Dict, Optional, cast
 from logging import Logger, Formatter, Handler, WARNING, getLogger
 from logging.config import dictConfig
 
 from flask.app import Flask
-from flask.config import Config
 from flask.cli import FlaskGroup
 from flask.logging import default_handler
 from flask_cors import CORS
@@ -32,18 +32,27 @@ CONFIG_ENV_VAR_PREFIX = APP_NAME.upper().replace("-", "_").replace(" ", "_")
 
 def create_app(test_config: Optional[Dict[str, Any]] = None):
     """Flask app factory."""
+    instance_path: str | None = environ.get("INSTANCE_PATH", None)
+    if instance_path:
+        if Path(instance_path).is_file():
+            instance_path = None
+
     # create and configure the app
-    app = Flask(APP_NAME, instance_relative_config=True)
+    app = Flask(APP_NAME, instance_relative_config=True, instance_path=instance_path)
 
     # Start Loading config #################
 
     # load defaults
-    config = cast(Config, app.config)
-    flask_env = cast(Optional[str], config.get("ENV"))
-    if flask_env == "production":
-        config.from_object(ProductionConfig)
-    elif flask_env == "development":
+    config = app.config
+    flask_debug: bool = (
+        config.get("DEBUG", False)
+        or environ.get("FLASK_ENV", "production").lower() == "development"
+    )
+    if flask_debug:
         config.from_object(DebugConfig)
+    elif test_config is None:
+        # only load production defaults if no special test config is given
+        config.from_object(ProductionConfig)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
