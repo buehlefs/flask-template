@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- Updated SQLAlchemy models to use new `2.0` style (see <https://docs.sqlalchemy.org/en/20/changelog/migration_14.html>)
+
+### Notable Dependency Updates
+
+- `SQLAlchemy`: [Migration Guide](https://docs.sqlalchemy.org/en/20/changelog/migration_14.html)
+
 
 ## [v0.4.0]
 
