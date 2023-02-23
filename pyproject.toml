@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flask_template"
-version = "0.2.0"
+version = "0.3.0"
 description = "A template for Flask applications with SQLalchemy, Migrations and REST API"
 authors = ["Fabian Bühler"]
 license = "Unlicense"
@@ -48,7 +48,7 @@ honor_noqa = true
 atomic = true
 
 [tool.sphinx]
-copyright-year = 2021
+copyright-year = 2023
 enable-autodoc = true
 enable-autosectionlabel = true
 # documentation for myst: <https://myst-parser.readthedocs.io/en/latest>
