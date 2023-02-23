@@ -248,24 +248,6 @@ if _md_substitutions and isinstance(_md_substitutions, dict):
     myst_substitutions: Dict[str, str] = _md_substitutions
 
 
-# recommonmark settings
-def setup(app):
-    recommonmark_config = {}
-    if sphinx_config.get("recommonmark"):
-        config = sphinx_config.get("recommonmark")
-        for key, val in config.items():
-            recommonmark_config[key.replace("-", "_")] = val
-        recommonmark_config.update(sphinx_config.get("recommonmark"))
-        app.add_config_value(
-            "recommonmark_config",
-            recommonmark_config,
-            True,
-        )
-        from recommonmark.transform import AutoStructify
-
-        app.add_transform(AutoStructify)
-
-
 # -- Extra Files -------------------------------------------------------------
 
 

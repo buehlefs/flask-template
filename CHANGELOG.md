@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+### Removed
+
+- `recommonmark` dev dependency (package is no longer maintained; use the MyST parser instead)
+
+
 ## [v0.3.0]
 
 ### Added
