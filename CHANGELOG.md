@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added SQLAlchemy to the top level dependencies to fix it to version `^1.4`
 
 ### Removed
 
