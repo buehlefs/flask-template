@@ -7,9 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [v0.4.0]
+
 ### Added
 
 - Added SQLAlchemy to the top level dependencies to fix it to version `^1.4`
+
+### Notable Dependency Updates
+
+- Updated **all** dependencies to newer versions. Please check the changelogs of the updated Packages!
+- `Python` the minimum supported python version is now `3.8.1`
+- `Flask-SQLAlchemy` & `Flask-Migrate` changes to support SQLAlchemy `2.0` (many of the changes, e.g., for session handling, can break code in subtle ways so beware and read the changelogs!)
+- `Flask-Babel` with incompatible changes (see changes in `babel.py`)
+- `Flask-Smorest` small changes, but transitive dependencies also changed: `Apispec` and `marshmallow`
+- `Sphinx` is now version 5 by default
+- `invoke` update to version 2 for python 3.11 support
 
 ### Removed
 
@@ -74,7 +87,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add inital flask template with documentation
 
-[unreleased]: https://github.com/buehlefs/flask-template/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/buehlefs/flask-template/compare/v0.4.0...HEAD
+[v0.4.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.4.0
 [v0.3.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.3.0
 [v0.2.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.2.0
 [v0.1.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.1.0
