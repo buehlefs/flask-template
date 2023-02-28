@@ -7,13 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [v0.4.1]
+
 ### Updated
 
 - Updated SQLAlchemy models to use new `2.0` style (see <https://docs.sqlalchemy.org/en/20/changelog/migration_14.html>)
 
 ### Notable Dependency Updates
 
-- `SQLAlchemy`: [Migration Guide](https://docs.sqlalchemy.org/en/20/changelog/migration_14.html)
+- `SQLAlchemy`: updated to version 2.0 [Migration Guide](https://docs.sqlalchemy.org/en/20/changelog/migration_14.html)
+- `Sphinx` is now version 6 by default
+- `myst-parser` updated to support newest sphinx
 
 
 ## [v0.4.0]
@@ -95,7 +100,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add inital flask template with documentation
 
-[unreleased]: https://github.com/buehlefs/flask-template/compare/v0.4.0...HEAD
+
+[unreleased]: https://github.com/buehlefs/flask-template/compare/v0.4.1...HEAD
+[v0.4.1]: https://github.com/buehlefs/flask-template/releases/tag/v0.4.1
 [v0.4.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.4.0
 [v0.3.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.3.0
 [v0.2.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.2.0

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flask_template"
-version = "0.4.0"
+version = "0.4.1"
 description = "A template for Flask applications with SQLalchemy, Migrations and REST API"
 authors = ["Fabian Bühler"]
 license = "Unlicense"
@@ -24,10 +24,10 @@ flake8 = "^6.0.0"
 pytest = "^7.2.0"
 flake8-docstrings = "^1.7.0"
 flake8-bugbear = "^23.2.13"
-Sphinx = "^5.0.0"
+Sphinx = "^6.0.0"
 sphinxcontrib-redoc = "^1.6.0"
 sphinx-click = "^4.4.0"
-myst-parser = "^0.18.1"
+myst-parser = "^0.19.0"
 invoke = "^2.0.0"
 pip-licenses = "^4.0.3"
 
