@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- Updated alembic/flask-migrate config to work with updated dependencies again
+
 
 ## [v0.4.1]
 
