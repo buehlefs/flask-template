@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/github/license/buehlefs/flask-template)](https://github.com/buehlefs/flask-template/blob/main/LICENSE)
 ![Python: >= 3.8](https://img.shields.io/badge/python-^3.8-blue)
 
-This package uses Poetry ([documentation](https://python-poetry.org/docs/)).
+This package uses Poetry `>=1.2` ([documentation](https://python-poetry.org/docs/)).
 
 ## VSCode
 
