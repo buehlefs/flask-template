@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated alembic/flask-migrate config to work with updated dependencies again
 - Updated dev dependencies specification to use new group key (see <https://python-poetry.org/docs/managing-dependencies/#dependency-groups>)
 
+### Fixed
+
+- Joining of command line arguments if running under windows (see also <https://learn.microsoft.com/de-de/archive/blogs/twistylittlepassagesallalike/everyone-quotes-command-line-arguments-the-wrong-way>)\
+  ⚠️ This does **not** properly escape meta-characters recognized by CMD.exe! (see the linked blog post for more information)
+
 
 ## [v0.4.1]
 

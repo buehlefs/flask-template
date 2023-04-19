@@ -1,10 +1,15 @@
 from pathlib import Path
-from shlex import join
 from typing import List
+from platform import system
 
 from dotenv import load_dotenv
 from invoke import task
 from invoke.runners import Result
+
+if system() == "Windows":
+    from subprocess import list2cmdline as join
+else:
+    from shlex import join
 
 load_dotenv(".flaskenv")
 load_dotenv(".env")
