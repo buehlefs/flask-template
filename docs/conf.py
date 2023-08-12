@@ -54,8 +54,8 @@ copyright = f"{copyright_year}, {author}"
 version = str(package_config.get("version"))
 release = str(sphinx_config.get("release", version))
 
-config_theme = str(sphinx_config.get("theme"))
-￼
+config_theme = sphinx_config.get("theme")
+
 if sphinx_config.get("html-baseurl", None):
     html_baseurl = sphinx_config.get("html-baseurl", None)
 
