@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated alembic/flask-migrate config to work with updated dependencies again
 - Updated dev dependencies specification to use new group key (see <https://python-poetry.org/docs/managing-dependencies/#dependency-groups>)
+- Updated depencencies (the lockfile now uses urrlib3 `>=2.0`, pin urrllib3 to a lower version if required)
 
 ### Fixed
 
