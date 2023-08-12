@@ -50,6 +50,7 @@ atomic = true
 
 [tool.sphinx]
 copyright-year = 2023
+# theme = "sphinx_rtd_theme"  # theme must be added to the requirements first!
 enable-autodoc = true
 enable-autosectionlabel = true
 # documentation for myst: <https://myst-parser.readthedocs.io/en/latest>

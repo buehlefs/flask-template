@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added sphinx setting for changing the html theme in `pyproject.toml`
+
 ### Updated
 
 - Updated alembic/flask-migrate config to work with updated dependencies again
