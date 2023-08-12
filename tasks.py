@@ -67,7 +67,7 @@ def browse_doc(c):
     Args:
         c (Context): task context
     """
-    index_path = Path("./docs/_build/html/index.html")
+    index_path = Path("./docs/_build/index.html")
     if not index_path.exists():
         doc(c)
 
@@ -85,7 +85,7 @@ def doc_index(c, filter_=""):
         c (Context): task context
         filter_ (str, optional): an optional filter string. Defaults to "".
     """
-    inv_path = Path("./docs/_build/html/objects.inv")
+    inv_path = Path("./docs/_build/objects.inv")
     if not inv_path.exists():
         doc(c)
 
@@ -94,7 +94,7 @@ def doc_index(c, filter_=""):
 
     with c.cd(str(Path("./docs"))):
         output: Result = c.run(
-            join(["python", "-m", "sphinx.ext.intersphinx", "_build/html/objects.inv"]),
+            join(["python", "-m", "sphinx.ext.intersphinx", "_build/objects.inv"]),
             echo=True,
             hide="stdout",
         )
