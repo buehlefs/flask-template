@@ -14,8 +14,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 
 - Updated alembic/flask-migrate config to work with updated dependencies again
+  > [!IMPORTANT]
+  > The alembic config needs to be updated in existing projects!
 - Updated dev dependencies specification to use new group key (see <https://python-poetry.org/docs/managing-dependencies/#dependency-groups>)
+
+### Notable Dependency Updates
+
+- Dropped support for Python < 3.9 as Sphinx requires Python 3.9 since version 7.2!
 - Updated depencencies (the lockfile now uses urrlib3 `>=2.0`, pin urrllib3 to a lower version if required)
+- Updated Flask to `v3.0.0`! ([CHANGELOG](https://flask.palletsprojects.com/en/3.0.x/changes/#version-3-0-1))
+  Flask has deprecated te `__version__` attribute and finally removed some pending deprecations.
+- Updated Sphinx to `v7.2.6`! ([CHANGELOG](https://www.sphinx-doc.org/en/master/changes.html#release-7-2-6-released-sep-13-2023))
 
 ### Fixed
 
