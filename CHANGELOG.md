@@ -14,8 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 
 - Updated alembic/flask-migrate config to work with updated dependencies again
-  > [!IMPORTANT]
-  > The alembic config needs to be updated in existing projects!
+  ⚠️ The alembic config needs to be updated in existing projects!
 - Updated dev dependencies specification to use new group key (see <https://python-poetry.org/docs/managing-dependencies/#dependency-groups>)
 
 ### Notable Dependency Updates
