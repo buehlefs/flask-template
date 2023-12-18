@@ -136,12 +136,8 @@ if sphinx_config.get("enable-markdown", False):
     _md_plugin = sphinx_config["enable-markdown"]
     if _md_plugin is True or _md_plugin.lower() == "myst":
         extensions.append("myst_parser")
-    elif _md_plugin.lower() == "recommonmark":
-        extensions.append("recommonmark")
     else:
-        print(
-            "Unknown markdown plugin specified (allowed: 'myst', 'recommonmark'), using 'myst'."
-        )
+        print("Unknown markdown plugin specified (allowed: 'myst'), using 'myst'.")
         extensions.append("myst_parser")
     print("MARKDOWN ENABLED")
 
