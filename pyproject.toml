@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flask_template"
-version = "0.4.1"
+version = "0.5.0"
 description = "A template for Flask applications with SQLalchemy, Migrations and REST API"
 authors = ["Fabian Bühler"]
 license = "Unlicense"

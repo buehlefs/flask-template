@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [v0.5.0]
+
 ### Added
 
 - Added sphinx setting for changing the html theme in `pyproject.toml`
@@ -125,7 +128,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add inital flask template with documentation
 
 
-[unreleased]: https://github.com/buehlefs/flask-template/compare/v0.4.1...HEAD
+[unreleased]: https://github.com/buehlefs/flask-template/compare/v0.5.0...HEAD
+[v0.5.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.5.0
 [v0.4.1]: https://github.com/buehlefs/flask-template/releases/tag/v0.4.1
 [v0.4.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.4.0
 [v0.3.0]: https://github.com/buehlefs/flask-template/releases/tag/v0.3.0
