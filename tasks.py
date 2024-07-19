@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List
 from platform import system
+from shutil import rmtree
 
 from dotenv import load_dotenv
 from invoke import task
@@ -39,7 +40,7 @@ ALLOWED_LICENSES = [
 
 
 @task
-def doc(c, format_="html", all_=False, color=True):
+def doc(c, format_="html", all_=False, color=True, clean=False):
     """Build the documentation.
 
     Args:
@@ -47,7 +48,11 @@ def doc(c, format_="html", all_=False, color=True):
         format_ (str, optional): the format to build. Defaults to "html".
         all (bool, optional): build all files new. Defaults to False.
         color (bool, optional): color output. Defaults to True.
+        clean (bool, optional): try to clean up the build directory before building. Defaults to False.
     """
+    if clean:
+        for file_ in Path("./docs/_build").glob("*"):
+            rmtree(file_, ignore_errors=True)
     cmd = ["sphinx-build", "-b", format_]
     if all_:
         cmd.append("-a")
