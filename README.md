@@ -30,6 +30,8 @@ To override any variable create a `.env` file.
 Environment variables in `.env` take precedence over `.flaskenv`.
 See the content of the `.flaskenv` file for the default environment variables.
 
+Before the first start, be sure to create a database: See [SQLAchemy](#sqlalchemy)
+
 Run the development server with
 
 ```bash
@@ -186,6 +188,8 @@ poetry run pybabel update -i messages.pot -d translations
 
 ## SQLAlchemy
 
+Before the first database migration is created, or when DB Models are upodated in preparation for a new migration use the following commands to create the database directly from the DB Models:
+
 ```bash
 # create dev db (this will NOT run migrations!)
 poetry run flask create-db
@@ -193,14 +197,25 @@ poetry run flask create-db
 poetry run flask drop-db
 ```
 
+To create the database from existing migrations use the following command:
+
+```bash
+poetry run flask db upgrade
+```
+
+
 ## Migrations
+
+Database migrations can be used to upgrade existing databases to new schemas without loosing data.
+Migration scripts are placed in `migrations/versions` by default.
+Use the following commands to create and use migrations:
 
 ```bash
 # create a new migration after changes in the db (Always manually review the created migration!)
 poetry run flask db migrate -m "Initial migration."
 # upgrade db to the newest migration
 poetry run flask db upgrade
-# help
+# help (and list available commands)
 poetry run flask db --help
 ```
 
