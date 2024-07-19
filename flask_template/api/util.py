@@ -1,4 +1,5 @@
 """Module containing utilities for flask smorest APIs."""
+
 from typing import Any
 from .jwt import JWTMixin
 from flask_smorest import Blueprint

@@ -11,9 +11,9 @@ from .cli import register_cli_blueprint
 def register_db(app: Flask):
     """Register the sqlalchemy db and alembic migrations with the flask app."""
     if not app.config.get("SQLALCHEMY_DATABASE_URI"):
-        app.config[
-            "SQLALCHEMY_DATABASE_URI"
-        ] = f"sqlite:///{app.instance_path}/{app.import_name}.db"
+        app.config["SQLALCHEMY_DATABASE_URI"] = (
+            f"sqlite:///{app.instance_path}/{app.import_name}.db"
+        )
 
     DB.init_app(app)
     app.logger.info(f'Connected to db "{app.config["SQLALCHEMY_DATABASE_URI"]}".')

@@ -90,9 +90,9 @@ extensions = [
 autosectionlabel_prefix_document = False
 autosectionlabel_maxdepth = None
 
-intersphinx_mapping: Optional[
-    Dict[str, Tuple[str, Union[Optional[str], Tuple[str]]]]
-] = None
+intersphinx_mapping: Optional[Dict[str, Tuple[str, Union[Optional[str], Tuple[str]]]]] = (
+    None
+)
 intersphinx_timeout = 30
 
 source_suffix = {
