@@ -259,3 +259,14 @@ poetry run invoke doc-index --filter=searchtext
 # export/update requirements.txt from poetry dependencies (for readthedocs build)
 poetry run invoke update-dependencies
 ```
+
+---
+
+## Projects using this Template
+
+ *  <https://github.com/UST-QuAntiL/qhana-plugin-runner>
+ *  <https://github.com/UST-QuAntiL/qhana-plugin-registry>
+ *  <https://github.com/qunicorn/qunicorn-core>
+ *  <https://github.com/Muster-Suchen-und-Erkennen/muse-for-anything>
+
+:information_source: Feel free to creat an issue or a PR if you want your project to be listed here.
