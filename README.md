@@ -2,7 +2,7 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![GitHub license](https://img.shields.io/github/license/buehlefs/flask-template)](https://github.com/buehlefs/flask-template/blob/main/LICENSE)
-![Python: >= 3.8](https://img.shields.io/badge/python-^3.8-blue)
+![Python: >= 3.9](https://img.shields.io/badge/python-^3.9-blue)
 
 This package uses Poetry `>=1.2` ([documentation](https://python-poetry.org/docs/)).
 
@@ -61,6 +61,31 @@ Configured in `flask_template/util/config/smorest_config.py`.
   * Registered Routes: <http://localhost:5000/debug/routes>\
     Useful for looking up which endpoint is served under a route or what routes are available.
 
+### Using the Template
+
+To use this template for your own project follow these steps:
+
+ 1. Create a new empty git repository (optional)
+ 2. Copy the content from this template repository into the new repository (use the "download as zip" function from GitHub)
+ 3. Commit the changes
+ 4. Install the dependencies (`poetry install`)
+ 5. Rename the template project:
+    ```bash
+    poetry run invoke rename-project --name="<new_project_name_here>"
+    ```
+    :warning: The new project name should be lower case and use `_` between words (i.e. `snake_case`).
+
+    OR: Manually search and replace all occurrences of `flask_template` and variations.
+ 6. Review and commit all changes
+ 7. Update (or remove) the changelog to fit your project
+ 8. Change the license and the license link in this file (line 4) to fit your project
+ 9. Add a link to the `buehlefs/flask-template` repository to this file (optional)
+10. Remove the `Using the Template` paragraph from this file (optional)
+11. Commit all changes
+12. Start coding (follow [Development](#development) to get started)
+
+This template is updated from time to time. Major changes will be highlighted in the changelog.
+Viewing the changes made to the code in the template repository can be helpful when updating your project.
 
 
 ## What this Template contains

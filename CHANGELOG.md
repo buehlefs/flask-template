@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added helper function to change the template name to the future project name in `tasks.py`
+
 
 ## [v0.5.0]
 

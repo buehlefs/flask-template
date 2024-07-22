@@ -1,11 +1,12 @@
 from pathlib import Path
-from typing import List
 from platform import system
 from shutil import rmtree
+from typing import List, Optional
 
 from dotenv import load_dotenv
 from invoke import task
 from invoke.runners import Result
+from invoke.context import Context
 
 if system() == "Windows":
     from subprocess import list2cmdline as join
@@ -40,7 +41,13 @@ ALLOWED_LICENSES = [
 
 
 @task
-def doc(c, format_="html", all_=False, color=True, clean=False):
+def doc(
+    c: Context,
+    format_: str = "html",
+    all_: bool = False,
+    color: bool = True,
+    clean: bool = False,
+):
     """Build the documentation.
 
     Args:
@@ -66,7 +73,7 @@ def doc(c, format_="html", all_=False, color=True, clean=False):
 
 
 @task
-def browse_doc(c):
+def browse_doc(c: Context):
     """Open the documentation in the browser.
 
     Args:
@@ -83,7 +90,7 @@ def browse_doc(c):
 
 
 @task
-def doc_index(c, filter_=""):
+def doc_index(c: Context, filter_: str = ""):
     """Search the index of referencable sphinx targets in the documentation.
 
     Args:
@@ -98,15 +105,16 @@ def doc_index(c, filter_=""):
         filter_ = filter_.lower()
 
     with c.cd(str(Path("./docs"))):
-        output: Result = c.run(
+        output: Optional[Result] = c.run(
             join(["python", "-m", "sphinx.ext.intersphinx", "_build/objects.inv"]),
             echo=True,
             hide="stdout",
         )
+        stdout = output.stdout if output else ""
         print(
             "".join(
                 l
-                for l in output.stdout.splitlines(True)
+                for l in stdout.splitlines(True)
                 if (l and not l[0].isspace()) or (not filter_) or (filter_ in l.lower())
             ),
         )
@@ -114,12 +122,12 @@ def doc_index(c, filter_=""):
 
 @task
 def list_licenses(
-    c,
-    format_="json",
-    include_installed=False,
-    summary=False,
-    short=False,
-    echo=False,
+    c: Context,
+    format_: str = "json",
+    include_installed: bool = False,
+    summary: bool = False,
+    short: bool = False,
+    echo: bool = False,
 ):
     """List licenses of dependencies.
 
@@ -135,12 +143,13 @@ def list_licenses(
     """
     packages: List[str] = []
     if not include_installed:
-        packages_output: Result = c.run(
+        packages_output: Optional[Result] = c.run(
             join(["poetry", "export", "--dev", "--without-hashes"]),
             echo=False,
             hide="both",
         )
-        packages = [p.split("=", 1)[0] for p in packages_output.stdout.splitlines() if p]
+        packages_stdout = packages_output.stdout if packages_output else ""
+        packages = [p.split("=", 1)[0] for p in packages_stdout.splitlines() if p]
     cmd: List[str] = [
         "pip-licenses",
         "--format",
@@ -172,7 +181,7 @@ def list_licenses(
 
 
 @task
-def update_licenses(c, include_installed=False):
+def update_licenses(c: Context, include_installed: bool = False):
     """Update the licenses template to include all licenses.
 
     By default only the direct (and transitive) dependencies of the project are included.
@@ -183,12 +192,13 @@ def update_licenses(c, include_installed=False):
     """
     packages: List[str] = []
     if not include_installed:
-        packages_output: Result = c.run(
+        packages_output: Optional[Result] = c.run(
             join(["poetry", "export", "--dev", "--without-hashes"]),
             echo=False,
             hide="both",
         )
-        packages = [p.split("=", 1)[0] for p in packages_output.stdout.splitlines() if p]
+        packages_stdout = packages_output.stdout if packages_output else ""
+        packages = [p.split("=", 1)[0] for p in packages_stdout.splitlines() if p]
     cmd: List[str] = [
         "pip-licenses",
         "--format",
@@ -218,7 +228,7 @@ def update_licenses(c, include_installed=False):
 
 
 @task(update_licenses)
-def update_dependencies(c):
+def update_dependencies(c: Context):
     """Update dependencies that are derived from the pyproject.toml dependencies (e.g. doc dependencies and licenses).
 
     Args:
@@ -240,3 +250,133 @@ def update_dependencies(c):
         hide="err",
         warn=True,
     )
+
+
+@task()
+def rename_project(c: Context, name: str):
+    """Rename the project template to a different project name.
+
+    WARNING: This will edit file cntents in the current project folder.
+    WARNING: The rename will be done naively by matching the old name!
+
+    This function can be removed once the project has been renamed.
+
+    Args:
+        c (Context): task context
+        name (str): the new project name in snake case
+    """
+    git_status: Optional[Result] = c.run(
+        join(["git", "status", "--porcelain"]), hide=True
+    )
+    if (
+        git_status
+        and git_status.ok
+        and git_status.stdout
+        and not git_status.stdout.isspace()
+    ):
+        # is in a git repo and not all changes are committed
+        print("NOT IN A CLEAR GIT REPOSITORY! Aborting...")
+        print("Please commit all changes before running this command!")
+        return
+
+    print("Current project name is:", repr(MODULE_NAME))
+    print("NEW project name will be:", repr(name), "\n\n")
+
+    old_name_parts = MODULE_NAME.split("_")
+    new_name_parts = name.split("_")
+
+    replacers = [
+        ("_".join(old_name_parts), "_".join(new_name_parts)),
+        ("-".join(old_name_parts), "-".join(new_name_parts)),
+        (" ".join(old_name_parts), " ".join(new_name_parts)),
+        (
+            "_".join(map(lambda s: s.capitalize(), old_name_parts)),
+            "_".join(map(lambda s: s.capitalize(), new_name_parts)),
+        ),
+        (
+            "-".join(map(lambda s: s.capitalize(), old_name_parts)),
+            "-".join(map(lambda s: s.capitalize(), new_name_parts)),
+        ),
+        (
+            " ".join(map(lambda s: s.capitalize(), old_name_parts)),
+            " ".join(map(lambda s: s.capitalize(), new_name_parts)),
+        ),
+        (
+            "_".join(map(lambda s: s.title(), old_name_parts)),
+            "_".join(map(lambda s: s.title(), new_name_parts)),
+        ),
+        (
+            "-".join(map(lambda s: s.title(), old_name_parts)),
+            "-".join(map(lambda s: s.title(), new_name_parts)),
+        ),
+        (
+            " ".join(map(lambda s: s.title(), old_name_parts)),
+            " ".join(map(lambda s: s.title(), new_name_parts)),
+        ),
+        (
+            "".join(map(lambda s: s.title(), old_name_parts)),
+            " ".join(map(lambda s: s.title(), new_name_parts)),
+        ),
+    ]
+
+    # replace parts replaced in links to original github repo with original text
+    re_replacer = ("buehlefs/" + "-".join(new_name_parts), "buehlefs/flask-template")
+
+    root = Path(".").resolve()
+
+    to_rename: List[Path] = []
+
+    def replace_name(path: Path):
+        if path.name in ("__pyache__", "_build"):
+            return  # ignore cache files and docs build output
+
+        # Rename project in file contents
+        if path.is_file() and (
+            path.suffix
+            in (
+                ".toml",
+                ".md",
+                ".rst",
+                ".txt",
+                ".py",
+            )
+            or path.name in (".flaskenv", ".gitignore")
+        ):
+            old = path.read_text()
+            content = old
+            for pattern, replacement in replacers:
+                content = content.replace(pattern, replacement)
+            # keep all links to original github repo intact
+            content = content.replace(*re_replacer)
+            if content != old:
+                print("Updated:", "\n  ", path)
+                path.write_text(content)
+            else:
+                print("Unchanged:", "\n  ", path)
+        filename = path.name
+
+        # mark for renaming
+        for pattern, _ in replacers:
+            if pattern in filename:
+                to_rename.append(path)
+                break
+
+        # recurse into directories
+        if path.is_dir():
+            if path.name.startswith("."):
+                return  # ignore hidden dirs
+            for p in path.iterdir():
+                replace_name(p)
+
+    for p in root.iterdir():
+        if p.name not in ("migrations", "instance", "typings", "translations"):
+            replace_name(p)
+
+    while to_rename:
+        path = to_rename.pop()
+        filename = path.name
+        for pattern, replacement in replacers:
+            if pattern in filename:
+                new_path = path.parent / filename.replace(pattern, replacement)
+                print("Renamed:", "\n  ", path, "\n  ", new_path)
+                path.rename(new_path)
