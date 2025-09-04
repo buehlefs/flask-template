@@ -10,6 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added helper function to change the template name to the future project name in `tasks.py`
+- Added more alternatives to the readme
+- Add poetry export plugin explicitly in `pyproject.toml` (required for reequirements.txt export for doc build requirements file)
+- Add sphinxcontrib-redoc again to dev packages to get docs build working again.\
+    ⚠️ This requires a patch, which can be found in `docs/conf.py`. The included patch is very specific.
+    Alternatively install `setuptools` to get the required `pkg_resources` package.
+
+### Notable Dependency Updates
+
+- Updated all main and dev dependencies
+- Updated Marshmallow to version 4 ([CHANGELOG](https://marshmallow.readthedocs.io/en/latest/changelog.html#changelog))\
+  ⚠️ Marshmallow has significant changes that may require some migration: [Migration guide](https://marshmallow.readthedocs.io/en/latest/upgrading.html#upgrading-to-4-0)
+- Updated Sphinx to 8.2 (⚠️ requires python 3.11)
+- Changed minimum python version to 3.11
+- Switched from pip-licences to the better maintained fork pip-licenses-cli
 
 
 ## [v0.5.0]

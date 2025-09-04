@@ -29,6 +29,7 @@ ALLOWED_LICENSES = [
     "Apache Software License",
     "BSD License",
     "BSD",
+    "BSD-3-Clause",
     "GNU Lesser General Public License v2 or later (LGPLv2+)",
     "GNU Library or Lesser General Public License (LGPL)",
     "GPLv3",
@@ -219,12 +220,18 @@ def update_licenses(c: Context, include_installed: bool = False):
             "--packages",
             *packages,
         ]
-    c.run(
+    result = c.run(
         join(cmd),
         echo=True,
         hide="err",
         warn=True,
     )
+    if "not in allow-only licenses was found" in result.stderr:
+        raise ValueError(
+            "Encountered an unknown licence. Please check the licences of new or updated packages or update the ALLOWED_LICENCES.\n"
+            + "\n--- COMMAND OUTPUT ---\n"
+            + result.stderr
+        )
 
 
 @task(update_licenses)

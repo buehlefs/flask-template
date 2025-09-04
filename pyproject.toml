@@ -7,35 +7,39 @@ license = "Unlicense"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9.18"
-flask = { extras = ["dotenv"], version = "^3.0.0" }
-Flask-JWT-Extended = "^4.6.0"
-Flask-Cors = "^4.0.0"
+python = "^3.11"
+flask = { extras = ["dotenv"], version = "^3.1.0" }
+Flask-JWT-Extended = "^4.7.0"
+Flask-Cors = "^4.0.1"
 Flask-SQLAlchemy = "^3.1.1"
-SQLAlchemy = "^2.0.23"
-Flask-Migrate = "^4.0.5"
+SQLAlchemy = "^2.0.43"
+Flask-Migrate = "^4.1.0"
 flask-babel = "^4.0.0"
-flask-smorest = "^0.44.0"
-tomli = "^2.0.1"
+flask-smorest = "^0.46.0"
+tomli = "^2.2.1"
 
 [tool.poetry.group.dev.dependencies]
 # use key "tool.poetry.dev-dependencies" if you have to support poetry < 1.2!
-black = "^24.4.0"
-flake8 = "^7.1.0"
-pytest = "^8.2.2"
+black = "^25.1.0"
+flake8 = "^7.3.0"
+pytest = "^8.4.1"
 flake8-docstrings = "^1.7.0"
-flake8-bugbear = "^24.4.0"
-Sphinx = "^7.2.6"
+flake8-bugbear = "^24.12.12"
+Sphinx = "^8.2.3"
 sphinx-click = "^6.0.0"
-myst-parser = "^2.0.0"
+myst-parser = "^4.0.0"
 invoke = "^2.2.0"
-pip-licenses = "^4.3.3"
+pip-licenses-cli = { extras = ["spdx"], version = "^2.0.0" }
+sphinxcontrib-redoc = "^1.6.0"
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
 
 [tool.poetry.scripts]
 #flask = 'flask.cli:main'
 
 [tool.black]
-target-version = ["py39"]
+target-version = ["py311"]
 line-length = 90
 include = '\.pyi?$'
 

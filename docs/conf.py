@@ -21,6 +21,21 @@ from shutil import copyfile
 import subprocess
 from json import load
 
+# patch pkg.resoources for sphinxcontrib.redoc
+import sys
+from types import SimpleNamespace
+
+
+def get_distribution(package):
+    if package != "sphinxcontrib-redoc":
+        raise NotImplementedError()
+    return SimpleNamespace(version="1.6.0")
+
+
+pkg_resources = SimpleNamespace(get_distribution=get_distribution)
+sys.modules["pkg_resources"] = pkg_resources
+# end patch
+
 
 ON_READTHEDOCS = environ.get("READTHEDOCS") == "True"
 
