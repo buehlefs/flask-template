@@ -92,6 +92,11 @@ Viewing the changes made to the code in the template repository can be helpful w
 
 This template uses the following libraries to build a rest app with a database on top of flask.
 
+> [!NOTE]
+> The template will most likely contain more than you need preconfigured.
+> It is structured so that it should be easy to remove these by removing
+> the relevant files and a few imports (and the dependency in `pyproject.toml`).
+
  *  Flask ([documentation](https://flask.palletsprojects.com/en/2.0.x/))
  *  Flask-Cors ([documentation](https://flask-cors.readthedocs.io/en/latest/))\
     Used to provide cors headers.\
@@ -152,7 +157,11 @@ Additional files and folders:
 
 Library alternatives or recommendations:
 
- *  Rest API: flask-restx ([documentation](https://flask-restx.readthedocs.io/en/latest/))
+ *  Alternative dependency manager: [uv](https://docs.astral.sh/uv/)
+ *  Alternative (and faster) linter: [ruff](https://docs.astral.sh/ruff/)
+ *  Rest API:
+     *   flask-restx ([documentation](https://flask-restx.readthedocs.io/en/latest/))
+     *   [pydantic](https://pypi.org/project/pydantic/) for model validation (there are also flask specific packages that add OpenAPI spec together with pydantic models)
  *  For including single page applications: flask-static-digest ([documentation](https://github.com/nickjj/flask-static-digest))
  *  For scripting tasks: invoke ([documentation](http://www.pyinvoke.org))
  *  For hashing passwords: flask-bcrypt ([documentation](https://flask-bcrypt.readthedocs.io/en/latest/))
