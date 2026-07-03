@@ -23,7 +23,6 @@ from . import db
 from . import api
 from .api import jwt
 
-
 # change this to change tha flask app name and the config env var prefix
 # must not contain any spaces!
 APP_NAME = __name__

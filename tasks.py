@@ -29,6 +29,7 @@ ALLOWED_LICENSES = [
     "Apache 2.0",
     "Apache License, Version 2.0",
     "Apache Software License",
+    "Apache-2.0; BSD-2-Clause",  # packaging
     "BSD License",
     "BSD",
     "BSD-3-Clause",
@@ -37,6 +38,8 @@ ALLOWED_LICENSES = [
     "GPLv3",
     "MIT License",
     "MIT",
+    "MIT AND PSF-2.0",  # greenlet
+    "PSF-2.0",  # typing_extensions
     "Mozilla Public License 2.0 (MPL 2.0)",
     "new BSD",
     "Python Software Foundation License",

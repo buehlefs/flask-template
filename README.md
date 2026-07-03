@@ -2,24 +2,13 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![GitHub license](https://img.shields.io/github/license/buehlefs/flask-template)](https://github.com/buehlefs/flask-template/blob/main/LICENSE)
-![Python: >= 3.9](https://img.shields.io/badge/python-^3.9-blue)
+![Python: >= 3.12](https://img.shields.io/badge/python-^3.12-blue)
 
 This package uses Poetry `>=1.2` ([documentation](https://python-poetry.org/docs/)).
 
 ## VSCode
 
 For vscode install the python extension.
-Add the poetry venv path to the folders the python extension searches for venvs if the virtualenvs of poetry are not automatically discovered.
-
-On linux:
-
-```json
-{
-    "python.venvFolders": [
-        "~/.cache/pypoetry/virtualenvs"
-    ]
-}
-```
 
 ## Development
 
@@ -132,8 +121,6 @@ This template uses the following libraries to build a rest app with a database o
 
 Additional files and folders:
 
- *  `default.nix` and `shell.nix`\
-    For use with the [nix](https://nixos.org) ecosystem.
  *  `pyproject.toml`\
     Poetry package config and config for the [black](https://github.com/psf/black) formatter.
  *  `.flaskenv`\
@@ -148,9 +135,6 @@ Additional files and folders:
     Templates and static files of the flask app
  *  `docs`\
     Folder containing a sphinx documentation
- *  `typings`\
-    Python typing stubs for libraries that have no type information.
-    Mostly generated with the pylance extension of vscode.
  *  `tasks.py`\
     Tasks that can be executed with `invoke` (see [invoke tasks](#invoke-tasks))
 
@@ -158,7 +142,7 @@ Additional files and folders:
 Library alternatives or recommendations:
 
  *  Alternative dependency manager: [uv](https://docs.astral.sh/uv/)
- *  Alternative (and faster) linter: [ruff](https://docs.astral.sh/ruff/)
+ *  Alternative (and faster) linter+formatter: [ruff](https://docs.astral.sh/ruff/)
  *  Rest API:
      *   flask-restx ([documentation](https://flask-restx.readthedocs.io/en/latest/))
      *   [pydantic](https://pypi.org/project/pydantic/) for model validation (there are also flask specific packages that add OpenAPI spec together with pydantic models)

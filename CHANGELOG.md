@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- Updated documentation settings to reflect new Myst options
+
 ### Fixed
 
 - Fixed order of .env var loading for invoke tasks in `tasks.py`
+- Removed outdated references from README
+
+### Notable Dependency Updates
+
+- Updated all main and dev dependencies
+- Updated Sphinx to 9 (⚠️ requires python 3.12)
+- Changed minimum python version to 3.12
+- Updated Black
 
 
 ## [v0.5.1]

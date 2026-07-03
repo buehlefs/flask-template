@@ -234,15 +234,20 @@ redoc_uri = "https://unpkg.com/redoc@latest/bundles/redoc.standalone.js"
 # myst markdown parsing
 _myst_options = sphinx_config.get("myst", {})
 allowed_md_extensions = {
+    "alert",
     "amsmath",
+    "attrs_inline",
     "colon_fence",
     "deflist",
     "dollarmath",
+    "fieldlist",
+    "gfm_autolink",
     "html_admonition",
     "html_image",
     "linkify",
     "replacements",
     "smartquotes",
+    "strikethrough",
     "substitution",
     "tasklist",
 }
@@ -263,6 +268,13 @@ _md_substitutions = _myst_options.get("substitutions", None)
 if _md_substitutions and isinstance(_md_substitutions, dict):
     myst_substitutions: Dict[str, str] = _md_substitutions
 
+for _name, _value in _myst_options.items():
+    if _name in ("heading_anchors", "extensions", "substitutions"):
+        continue
+    _myst_name = f"myst_{_name}"
+    _global_vars = globals()
+    if _myst_name not in _global_vars:
+        _global_vars[_myst_name] = _value
 
 # -- Extra Files -------------------------------------------------------------
 

@@ -7,7 +7,6 @@ from http import HTTPStatus
 from ..util import SecurityBlueprint as SmorestBlueprint
 from .models import RootSchema
 
-
 API_V1 = SmorestBlueprint(
     "api-v1", "API v1", description="Version 1 of the API.", url_prefix="/api/v1"
 )

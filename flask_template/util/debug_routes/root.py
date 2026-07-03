@@ -1,4 +1,4 @@
-"""Module for the root endpoint of the debug routes. 
+"""Module for the root endpoint of the debug routes.
 Contains the blueprint to avoid circular dependencies."""
 
 from flask import Blueprint, render_template

@@ -8,7 +8,6 @@ from flask_sqlalchemy.model import Model
 from sqlalchemy.orm import DeclarativeBase, registry
 from sqlalchemy.schema import MetaData
 
-
 DB: SQLAlchemy = SQLAlchemy(
     metadata=MetaData(
         naming_convention={
