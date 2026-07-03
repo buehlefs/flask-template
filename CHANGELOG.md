@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed order of .env var loading for invoke tasks in `tasks.py`
+
 
 ## [v0.5.1]
 

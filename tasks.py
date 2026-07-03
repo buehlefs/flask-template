@@ -4,7 +4,7 @@ from shutil import rmtree
 from typing import List, Optional
 
 from dotenv import load_dotenv
-from invoke import task
+from invoke.tasks import task
 from invoke.runners import Result
 from invoke.context import Context
 
@@ -13,8 +13,10 @@ if system() == "Windows":
 else:
     from shlex import join
 
-load_dotenv(".flaskenv")
+# load .env first (load_dotenv will not override existing env vars
+# and it will not override vars from a previous load_dotenv call)
 load_dotenv(".env")
+load_dotenv(".flaskenv")
 
 
 # FIXME change this name after renaming the flask template package!
